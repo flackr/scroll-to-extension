@@ -1,0 +1,12 @@
+{
+  "name": "Scroll-to",
+  "version": "0.0.1",
+  "description": "Implements scroll-to element api",
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["scroll-to.js"]
+    }
+  ]
+}
