@@ -4,9 +4,10 @@ function scroll_to() {
   const match = entry.name.match(regex);
   if (!match || match.length != 2)
     return;
-  const elem = document.querySelector(match[1]);
+  let matchStr = decodeURIComponent(match[1]);
+  const elem = document.querySelector(matchStr);
   if (!elem) {
-    console.error('Failed to select element from selector: ' + match[1]);
+    console.error('Failed to select element from selector: ' + matchStr);
     return;
   }
   // For some reason if we scroll too soon the scroll jumps back up to the top
