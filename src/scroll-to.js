@@ -10,10 +10,10 @@ function scroll_to() {
     console.error('Failed to select element from selector: ' + matchStr);
     return;
   }
-  // For some reason if we scroll too soon the scroll jumps back up to the top
-  // of the page immediately after scrolling to the element.
-  setTimeout(() => {
+  // Need to wait for the load event to ensure the scroll does not get
+  // undone by the browsers anchor link scroll behavior.
+  window.addEventListener('load', () => {
     elem.scrollIntoView();
-  }, 500);
+  });
 }
 scroll_to();
