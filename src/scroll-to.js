@@ -20,6 +20,9 @@ function scroll_to() {
     console.error('Failed to select element from selector: ' + matchStr);
     return;
   }
+  const previousOutline = elem.style.outline;
+  elem.style.outline = 'Highlight solid 3px';
+  window.addEventListener('scroll', () => elem.style.outline = previousOutline, {once: true});
   // Need to wait for the load event to ensure the scroll does not get
   // undone by the browsers anchor link scroll behavior.
   window.addEventListener('load', () => {
