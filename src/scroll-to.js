@@ -22,7 +22,6 @@ function scroll_to() {
   }
   const previousOutline = elem.style.outline;
   elem.style.outline = 'Highlight solid 3px';
-  window.addEventListener('scroll', () => elem.style.outline = previousOutline, {once: true});
   // Need to wait for the load event to ensure the scroll does not get
   // undone by the browsers anchor link scroll behavior.
   window.addEventListener('load', () => {
@@ -31,6 +30,11 @@ function scroll_to() {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         elem.scrollIntoView();
+        // Wait until the element is scrolled into view to add a listener to
+        // cancel the highlight.
+        requestAnimationFrame(() => {
+          window.addEventListener('scroll', () => elem.style.outline = previousOutline, {once: true});
+        });
       });
     });
   });
